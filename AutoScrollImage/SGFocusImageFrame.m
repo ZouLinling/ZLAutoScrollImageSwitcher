@@ -10,6 +10,7 @@
 
 #import "SGFocusImageFrame.h"
 #import <objc/runtime.h>
+#import "UIImageView+AFNetworking.h"
 #define ITEM_WIDTH [UIScreen mainScreen].bounds.size.width
 
 #define DEFAULT_TIME_INTERVAL 3.0f
@@ -78,6 +79,9 @@
     [self addSubview:_pageControl];
     
     _scrollView.showsHorizontalScrollIndicator = NO;
+    _scrollView.showsVerticalScrollIndicator = NO;
+    _scrollView.alwaysBounceVertical = NO;
+    
     _scrollView.pagingEnabled = YES;
     _scrollView.delegate = self;
     
@@ -103,11 +107,11 @@
         SGFocusImageItem *item = [aImageItems objectAtIndex:i];
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * _scrollView.frame.size.width+space, space, _scrollView.frame.size.width-space*2, _scrollView.frame.size.height-2*space-size.height)];
         //加载图片
-        imageView.backgroundColor = i%2?[UIColor redColor]:[UIColor blueColor];
-        imageView.image = [UIImage imageNamed:item.image];
+//        imageView.backgroundColor = i%2?[UIColor redColor]:[UIColor blueColor];
+        [imageView setImageWithURL:[NSURL URLWithString:item.image]];
         [_scrollView addSubview:imageView];
     }
-    _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width * aImageItems.count, _scrollView.frame.size.height);
+    _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width * aImageItems.count, 0);//height设为0禁止上下滚动
     _pageControl.numberOfPages = aImageItems.count>1?aImageItems.count -2:aImageItems.count;
     _pageControl.currentPage = 0;
     
@@ -118,7 +122,6 @@
         {
             [self performSelector:@selector(switchFocusImageItems) withObject:nil afterDelay:_timeInterval];
         }
-        
     }
 }
 
