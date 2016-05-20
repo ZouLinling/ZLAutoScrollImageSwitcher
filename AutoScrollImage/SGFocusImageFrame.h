@@ -29,7 +29,7 @@
 @property CGFloat timeInterval;
 
 - (id)initWithFrame:(CGRect)frame focusImageItems:(SGFocusImageItem *)items, ... NS_REQUIRES_NIL_TERMINATION;
-- (id)initWithFrame:(CGRect)frame imageItems:(NSArray *)items;
+- (id)initWithFrame:(CGRect)frame imageItems:(NSArray *)items isAutoPlay:(BOOL)isAutoPlay;
 - (void)scrollToIndex:(int)aIndex;
 
 /**

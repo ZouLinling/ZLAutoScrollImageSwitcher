@@ -52,7 +52,7 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame imageItems:(NSArray *)items;
+- (id)initWithFrame:(CGRect)frame imageItems:(NSArray *)items isAutoPlay:(BOOL)isAutoPlay
 {
     self = [super initWithFrame:frame];
     if (self)
@@ -60,7 +60,7 @@
         _itemsArray = [NSMutableArray arrayWithArray:items];
         _itemsArray = [[self addFirstAndLast:_itemsArray] mutableCopy];
         _timeInterval = DEFAULT_TIME_INTERVAL;
-        _isAutoPlay = YES;
+        _isAutoPlay = isAutoPlay;
         [self setupViews];
     }
     return self;
