@@ -108,7 +108,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * _scrollView.frame.size.width+space, space, _scrollView.frame.size.width-space*2, _scrollView.frame.size.height-2*space-size.height)];
         //加载图片
 //        imageView.backgroundColor = i%2?[UIColor redColor]:[UIColor blueColor];
-        [imageView setImageWithURL:[NSURL URLWithString:item.image]];
+        [imageView setImageWithURL:[NSURL URLWithString:item.image] placeholderImage:[UIImage imageNamed:@"default_640_100"]];
         [_scrollView addSubview:imageView];
     }
     _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width * aImageItems.count, 0);//height设为0禁止上下滚动
